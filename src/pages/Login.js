@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoginInput from '../components/LoginInput';
-import LoginButton from '../components/ButtonLogin';
+import ButtonLogin from '../components/ButtonLogin';
 
 class Login extends React.Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class Login extends React.Component {
             value={ password }
             handleChange={ this.handleChange }
           />
-          <LoginButton
+          <ButtonLogin
             email={ email }
             isDisabled={ isDisabled }
             history={ history }
