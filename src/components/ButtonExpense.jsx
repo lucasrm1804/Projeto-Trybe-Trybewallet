@@ -5,12 +5,12 @@ import * as ACT from '../actions';
 
 class ButtonExpense extends Component {
   render() {
-    const { text, testId, getPrice } = this.props;
+    const { text, testId, handleClick } = this.props;
     return (
       <button
         data-testid={ testId }
         type="button"
-        onClick={ () => getPrice() }
+        onClick={ () => handleClick() }
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4
          border-b-4 border-blue-700 hover:border-blue-500 rounded"
       >
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 ButtonExpense.propTypes = {
   text: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
-  getPrice: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ButtonExpense);

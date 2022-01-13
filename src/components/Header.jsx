@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.calc = () => {
+      const { wallet: { expenses } } = this.props;
+      return expenses.reduce((acc, curr) => {
+        acc += curr.value * curr.exchangeRates[curr.currency].ask;
+        return acc;
+      }, 0);
+    };
+  }
+
   render() {
     const { user } = this.props;
-    const despesa = 0;
     return (
       <nav
         className="flex items-center justify-between flex-wrap
@@ -28,7 +38,7 @@ class Header extends Component {
             data-testid="total-field"
             className="font-semibold text-xl tracking-tight mr-6"
           >
-            {despesa}
+            { `Despesa Total ${this.calc()}` }
           </span>
           <span
             data-testid="header-currency-field"
@@ -44,6 +54,8 @@ class Header extends Component {
 
 Header.propTypes = {
   user: PropTypes.objectOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  wallet: PropTypes.objectOf(PropTypes.array).isRequired,
 };
 
 const mapStateToProps = (state) => state;
